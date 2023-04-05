@@ -43,7 +43,8 @@ const login = async (req: Request, res: Response) => {
     res.status(500).send({ message: "Error Logging", success: false, error });
   }
 };
-const userInfo = async (req:Request, res:Response) => {
-
-}
+const userInfo = async (req: Request, res: Response) => {
+  try {
+  } catch (error) {}
+};
 export { register, login, userInfo };
