@@ -43,4 +43,7 @@ const login = async (req: Request, res: Response) => {
     res.status(500).send({ message: "Error Logging", success: false, error });
   }
 };
-export { register, login };
+const userInfo = async (req:Request, res:Response) => {
+
+}
+export { register, login, userInfo };
