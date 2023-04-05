@@ -45,6 +45,23 @@ const login = async (req: Request, res: Response) => {
 };
 const userInfo = async (req: Request, res: Response) => {
   try {
-  } catch (error) {}
+    const user = await User.findOne({ _id: req.body.userId });
+    if (!user) {
+      return res
+        .status(200)
+        .send({ message: "User do not exist", success: false });
+    }
+    res.status(200).send({
+      success: true,
+      data: {
+        name: user.name,
+        email: user.email,
+      },
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .send({ message: "Error getting user info", success: false, error });
+  }
 };
 export { register, login, userInfo };
