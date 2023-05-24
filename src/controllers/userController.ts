@@ -45,10 +45,10 @@ const login = async (req: Request, res: Response) => {
 };
 const userInfo = async (req: Request, res: Response) => {
   try {
-    const user = await User.findOne({ _id: req.body.userId });
+    const user = await User.findOne({ _id: req.user.id });
     if (!user) {
       return res
-        .status(200)
+        .status(404)
         .send({ message: "User do not exist", success: false });
     }
     res.status(200).send({

@@ -8,10 +8,14 @@ import { Spin } from "antd";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
 function App() {
-  const { loading } = useSelector((state:RootState) => state.alerts);
+  const { loading } = useSelector((state: RootState) => state.alerts);
   return (
     <BrowserRouter>
-      {loading && <Spin tip="Loading" />}
+      {loading && (
+        <div>
+          <Spin className="loading" tip="Loading..." />
+        </div>
+      )}
       <Toaster position="top-center" reverseOrder={false} />
       <Routes>
         <Route path="/login" element={<Login />} />
