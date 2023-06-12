@@ -122,3 +122,12 @@ p{
   margin-left: -40px;
   border-bottom-left-radius: 10px;
 } 
+.loading {
+  margin: 20px 0;
+  margin-bottom: 20px;
+  padding: 30px 50px;
+  width: 100%;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 4px;
+}
