@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import { Spin } from "antd";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
+import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   const { loading } = useSelector((state: RootState) => state.alerts);
   return (
@@ -20,7 +21,11 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={
+        <ProtectedRoute>
+          <Home />
+        </ProtectedRoute>
+        } />
       </Routes>
     </BrowserRouter>
   );
