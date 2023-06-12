@@ -8,6 +8,7 @@ import { Spin } from "antd";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
 import ProtectedRoute from "./components/ProtectedRoute";
+import PublicRoute from "./components/PublicRoute";
 function App() {
   const { loading } = useSelector((state: RootState) => state.alerts);
   return (
@@ -19,13 +20,30 @@ function App() {
       )}
       <Toaster position="top-center" reverseOrder={false} />
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/" element={
-        <ProtectedRoute>
-          <Home />
-        </ProtectedRoute>
-        } />
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
