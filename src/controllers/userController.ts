@@ -46,6 +46,7 @@ const login = async (req: Request, res: Response) => {
 const userInfo = async (req: Request, res: Response) => {
   try {
     const user = await User.findOne({ _id: req.user.id });
+    user.password = undefined
     if (!user) {
       return res
         .status(404)
@@ -53,10 +54,7 @@ const userInfo = async (req: Request, res: Response) => {
     }
     res.status(200).send({
       success: true,
-      data: {
-        name: user.name,
-        email: user.email,
-      },
+      data: user,
     });
   } catch (error) {
     res

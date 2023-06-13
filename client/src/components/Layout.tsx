@@ -33,7 +33,34 @@ export const Layout: FC<{ children: any }> = ({ children }) => {
       icon: "ri-door-open-fill",
     },
   ];
-  const menuToDisplay = userMenu;
+  const adminMenu = [
+    {
+      name: "Home",
+      path: "/",
+      icon: "ri-home-line",
+    },
+    {
+      name: "Users",
+      path: "/users",
+      icon: "ri-user-line",
+    },
+    {
+      name: "Doctors",
+      path: "/doctors",
+      icon: "ri-capsule-line",
+    },
+    {
+      name: "Profile",
+      path: "/profile",
+      icon: "ri-account-circle-line",
+    },
+    {
+      name: "Logout",
+      path: "/logout",
+      icon: "ri-door-open-fill",
+    },
+  ];
+  const menuToDisplay = user?.isAdmin ? adminMenu : userMenu;
 
   return (
     <div className="main">
