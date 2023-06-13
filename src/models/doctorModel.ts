@@ -12,8 +12,10 @@ const doctorSchema = new Schema(
     specialization: { type: String, required: true },
     experience: { type: String, required: true },
     feePerCunsultation: { type: Number, required: true },
-    fromTime: { type: String, required: true },
-    toTime: { type: String, required: true },
+    timings:{
+      type: Array,
+      required: true
+    }
   },
   { timestamps: true }
 );
