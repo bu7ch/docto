@@ -7,6 +7,6 @@ const router = Router();
 router.post("/register", register);
 
 router.post("/login", login);
-router.get("/get-user-info-by-id",auth , userInfo)
+router.post("/get-user-info-by-id",auth , userInfo)
 
 export { router as userRoute };
