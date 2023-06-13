@@ -32,3 +32,25 @@
   box-shadow: 0 0 2px gray;
   height: 83vh;
 }
+.menu {
+  margin-top: 100px;
+}
+.menu-item {
+  margin-top: 30px;
+}
+.menu-item a{
+color: #fff;
+text-decoration: none;
+font-size: 18px;
+}
+.menu-item i{
+color: #fff;
+text-decoration: none;
+font-size: 18px;
+margin: 0 15px;
+}
+.active-menu-item{
+  background-color: #013b3b;
+  padding: 5px;
+  border-radius: 5px;
+}
