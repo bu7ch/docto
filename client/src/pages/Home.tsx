@@ -4,14 +4,13 @@ import { Layout } from "../components/Layout";
 function Home() {
   const getData = async () => {
     try {
-      const response = await axios.get(
-        "/api/users/get-user-info-by-id",
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      );
+      const response = await axios.post("/api/users/get-user-info-by-id",
+      {token:localStorage.getItem("token")},
+       {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
       console.log(response.data);
     } catch (error) {
       console.error(error);
@@ -23,9 +22,9 @@ function Home() {
 
   return (
     <Layout>
-        <h1>HomePage</h1>
+      <h1>HomePage</h1>
     </Layout>
-  )
+  );
 }
 
 export default Home;
