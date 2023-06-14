@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
-
 *{
   font-family: 'Montserrat', sans-serif !important;
 }
@@ -19,7 +18,7 @@ label{
   font-size: 16px !important;
   color: black !important;
 }
-/* .ant-form-item{
+.ant-form-item{
   margin: 10px 0 !important;; 
 }
 .ant-picker-input input{
@@ -31,7 +30,7 @@ label{
   height: 40px !important;
 }
 /* Common styling */
-/*
+
 .spinner-parent{
   display: flex;
   justify-content: center;
@@ -54,7 +53,7 @@ label{
   font-size: 25px;
   color: rgba(0, 0, 0, 0.833);
   font-weight: bold;
-} */
+}
 .card-title{
   font-size: 22px;
   font-weight: bold;
@@ -101,12 +100,14 @@ p{
 }
 
 
+/* authentication pages */
 
 .authentication{
    height: 100vh;
    display: flex;
    align-items: center;
    justify-content: center;
+   background-color: #005555;
 }
 .authentication-form{
   width: 400px;
@@ -121,24 +122,4 @@ p{
   padding: 7px 15px;
   margin-left: -40px;
   border-bottom-left-radius: 10px;
-} 
-.loading {
-  margin: 20px 0;
-  margin-bottom: 20px;
-  padding: 30px 50px;
-  width: 100%;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.02);
-  border-radius: 4px;
-}
-.page-title{
-  /* font-size: 25px; */
-  font-weight: bold;
-  color: #000;
-}
-.card-title{
-  /* font-size: 22rem; */
-  font-weight: bold;
-  color: #000;
-  margin-top: 3px;
 }

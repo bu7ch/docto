@@ -2,13 +2,13 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setUser } from "../redux/userSlice";
+import { reloadUserData, setUser } from "../redux/userSlice";
 import { hideLoading, showLoading } from "../redux/alertsSlice";
 
 function ProtectedRoute(props: { children: any }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user } = useSelector((state: any) => state.user);
+  const { user, reloadUser } = useSelector((state: any) => state.user);
   const getUser = async () => {
     try {
       dispatch(showLoading());
