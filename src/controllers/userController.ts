@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import User from "../models/userModel";
 import jwt from "jsonwebtoken";
+import Doctor from "../models/doctorModel";
 
 const register = async (req: Request, res: Response) => {
   try {
@@ -62,4 +63,34 @@ const userInfo = async (req: Request, res: Response) => {
       .send({ message: "Error getting user info", success: false, error });
   }
 };
-export { register, login, userInfo };
+const accountDoctor = async (req, res) => {
+  try {
+    const newdoctor = new Doctor({ ...req.body, status: "pending" });
+    await newdoctor.save();
+    const adminUser = await User.findOne({ isAdmin: true });
+
+    const unseenNotifications = adminUser.unseenNotifications;
+    unseenNotifications.push({
+      type: "new-doctor-request",
+      message: `${newdoctor.firstName} ${newdoctor.lastName} has applied for a doctor account`,
+      data: {
+        doctorId: newdoctor._id,
+        name: newdoctor.firstName + " " + newdoctor.lastName,
+      },
+      onClickPath: "/admin/doctors",
+    });
+    await User.findByIdAndUpdate(adminUser._id, { unseenNotifications });
+    res.status(200).send({
+      success: true,
+      message: "Doctor account applied successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "Error applying doctor account",
+      success: false,
+      error,
+    });
+  }
+}
+export { register, login, userInfo, accountDoctor };

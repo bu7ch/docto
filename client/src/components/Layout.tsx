@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import "../layout.css";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Badge } from "antd";
 export const Layout: FC<{ children: any }> = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false)
   const {user} = useSelector((state:any) => state.user)
@@ -89,7 +90,9 @@ export const Layout: FC<{ children: any }> = ({ children }) => {
             <i className="ri-menu-2-fill header-action-icon " onClick={() => setCollapsed(true)}></i>
           }
           <div className="notif">
+            <Badge count={user?.unseenNotifications.length}>
             <i className="ri-notification-line header-action-icon"></i>
+            </Badge>
             <Link to="/profile">{user?.name}</Link>
           </div>
           </div>
