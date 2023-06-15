@@ -93,4 +93,44 @@ const accountDoctor = async (req, res) => {
     });
   }
 }
-export { register, login, userInfo, accountDoctor };
+const markAllNotificationsSeen = async (req, res) => {
+  try {
+    const user = await User.findOne({_id: req.body.userId})
+    const unseenNotifications = user.unseenNotifications
+    const seenNotifications = user.seenNotifications
+    seenNotifications.push(...unseenNotifications) 
+    user.unseenNotifications = []
+    user.seenNotifications = seenNotifications
+    const updateUser = await user.save()
+    res.status(200).send({success: true,
+       message: "All notifications marked as seen",
+      data: updateUser})
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "Error applying doctor account",
+      success: false,
+      error,
+    });
+  }
+}
+const deleteAllNotifications = async (req, res) => {
+  try {
+    const user = await User.findOne({_id: req.body.userId})
+    user.unseenNotifications = []
+    user.seenNotifications = []
+    const updateUser = await user.save()
+    updateUser.password = undefined 
+    res.status(200).send({success: true,
+       message: "All notifications are deleted",
+      data: updateUser})
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "Error applying doctor account",
+      success: false,
+      error,
+    });
+  }
+}
+export { register, login, userInfo, accountDoctor, markAllNotificationsSeen, deleteAllNotifications };
