@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
+import Userslist from "./pages/Admin/UsersList";
 import ApplyDoctor from "./pages/ApplyDoctor";
 import Notifications from "./pages/Notifications";
 function App() {
@@ -59,6 +60,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Notifications />
+            </ProtectedRoute>
+          }
+        />
+          <Route
+          path="/admin/userslist"
+          element={
+            <ProtectedRoute>
+              <Userslist />
             </ProtectedRoute>
           }
         />

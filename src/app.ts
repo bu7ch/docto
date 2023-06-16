@@ -9,6 +9,7 @@ declare global {
 import dotenv from "dotenv";
 import  "./config/dbConfig";
 import { userRoute } from "./routes/userRoute";
+import { adminRoute } from "./routes/adminRoute";
 dotenv.config();
 
 const app: Express = express();
@@ -20,6 +21,7 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
 });
 app.use("/api/users", userRoute);
+app.use("/api/admin", adminRoute);
 app.listen(port, () => {
   return console.log(
     `[server]: Express is listening at http://localhost:${port}`
