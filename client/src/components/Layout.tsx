@@ -40,7 +40,7 @@ export const Layout: FC<{ children: any }> = ({ children }) => {
     },
     {
       name: "Profile",
-      path: `/doctor/profile/${user?._id}`,
+      path: `/doctors/profile/${user?._id}`,
       icon: "ri-user-line",
     },
   ];
@@ -67,15 +67,15 @@ export const Layout: FC<{ children: any }> = ({ children }) => {
       icon: "ri-user-line",
     },
   ];
-  const menuToDisplay = user?.isAdmin ? adminMenu : userMenu;
-
+  const menuToDisplay = user?.isAdmin ? adminMenu : user?.isDoctor ? doctorMenu : userMenu;
+  const role = user?.isAdmin ? "Admin" : user?.isDoctor ? "Doctor" : "User";
   return (
     <div className="main">
       <div className="d-flex">
         <div className="sidebar">
           <div className="sidebar-header">
             <h1 className="logo">Docto</h1>
-            {/* <h1 className="role">{role}</h1> */}
+            <h1 className="role">{role}</h1>
           </div>
 
           <div className="menu">
