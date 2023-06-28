@@ -14,6 +14,10 @@ const doctorSchema = new Schema(
     timings:{
       type: Array,
       required: true
+    },
+    status: {
+      type: String,
+      default: "pending",
     }
   },
   { timestamps: true }
