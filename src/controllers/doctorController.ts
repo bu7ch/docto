@@ -15,7 +15,7 @@ const getDoctorInfoByUserId = async (req: Request, res: Response) => {
       .send({ message: "Error getting doctor info", success: false, error });
   }
 };
-const updateDoctorProfile = async (req:Request, res: Response) => {
+const updateDoctorProfile = async (req: Request, res: Response) => {
   try {
     const doctor = await Doctor.findOneAndUpdate(
       { userId: req.body.userId },
@@ -31,6 +31,6 @@ const updateDoctorProfile = async (req:Request, res: Response) => {
       .status(500)
       .send({ message: "Error getting doctor info", success: false, error });
   }
-}
+};
 
 export { getDoctorInfoByUserId, updateDoctorProfile };

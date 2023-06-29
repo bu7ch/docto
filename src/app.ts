@@ -10,7 +10,7 @@ import dotenv from "dotenv";
 import  "./config/dbConfig";
 import { userRoute } from "./routes/userRoute";
 import { adminRoute } from "./routes/adminRoute";
-import { doctorRoute } from "./routes/doctorRoute";
+import { doctorRoute } from "./routes/doctorsRoute";
 dotenv.config();
 
 const app: Express = express();

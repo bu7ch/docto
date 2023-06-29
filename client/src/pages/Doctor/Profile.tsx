@@ -74,13 +74,11 @@ function Profile() {
   useEffect(() => {
     getDoctorData();
   }, []);
-
   return (
     <Layout>
       <h1 className="page-title">Doctor Profile</h1>
       <hr />
-       <DoctorForm onFinish={onFinish} initialValues={doctor}/>
-      
+      {doctor && <DoctorForm onFinish={onFinish} initialValues={doctor} />}
     </Layout>
   );
 }
