@@ -46,7 +46,7 @@ const login = async (req: Request, res: Response) => {
 };
 const userInfo = async (req: Request, res: Response) => {
   try {
-    const user = await User.findOne({ _id: req.user.id });
+    const user = await User.findOne({ _id: req.body.userId });
     user.password = undefined
     if (!user) {
       return res
@@ -63,7 +63,7 @@ const userInfo = async (req: Request, res: Response) => {
       .send({ message: "Error getting user info", success: false, error });
   }
 };
-const accountDoctor = async (req, res) => {
+const accountDoctor = async (req : Request, res : Response) => {
   try {
     const newdoctor = new Doctor({ ...req.body, status: "pending" });
     await newdoctor.save();
@@ -77,7 +77,7 @@ const accountDoctor = async (req, res) => {
         doctorId: newdoctor._id,
         name: newdoctor.firstName + " " + newdoctor.lastName,
       },
-      onClickPath: "/admin/doctors",
+      onClickPath: "/admin/doctorslist",
     });
     await User.findByIdAndUpdate(adminUser._id, { unseenNotifications });
     res.status(200).send({
@@ -93,7 +93,7 @@ const accountDoctor = async (req, res) => {
     });
   }
 }
-const markAllNotificationsSeen = async (req, res) => {
+const markAllNotificationsSeen = async (req : Request, res : Response) => {
   try {
     const user = await User.findOne({_id: req.body.userId})
     const unseenNotifications = user.unseenNotifications
@@ -114,7 +114,7 @@ const markAllNotificationsSeen = async (req, res) => {
     });
   }
 }
-const deleteAllNotifications = async (req, res) => {
+const deleteAllNotifications = async (req: Request, res: Response) => {
   try {
     const user = await User.findOne({_id: req.body.userId})
     user.unseenNotifications = []
@@ -133,4 +133,21 @@ const deleteAllNotifications = async (req, res) => {
     });
   }
 }
-export { register, login, userInfo, accountDoctor, markAllNotificationsSeen, deleteAllNotifications };
+const getAllApprovedDoctors = async (req:Request, res: Response) => {
+  try {
+    const doctors = await Doctor.find({ status: "approved" });
+    res.status(200).send({
+      message: "Doctors fetched successfully",
+      success: true,
+      data: doctors,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "Error applying doctor account",
+      success: false,
+      error,
+    });
+  }
+}
+export { register, login, userInfo, accountDoctor, markAllNotificationsSeen, deleteAllNotifications, getAllApprovedDoctors };
