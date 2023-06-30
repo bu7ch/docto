@@ -35,7 +35,7 @@ export const Layout: FC<{ children: any }> = ({ children }) => {
     },
     {
       name: "Appointments",
-      path: "/doctor/appointments",
+      path: "/doctors/appointments",
       icon: "ri-file-list-3-line",
     },
     {

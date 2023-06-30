@@ -14,6 +14,9 @@ import ApplyDoctor from "./pages/ApplyDoctor";
 import Notifications from "./pages/Notifications";
 import DoctorsList from "./pages/Admin/DoctorsList";
 import Profile from "./pages/Doctor/Profile";
+import BookAppointment from "./pages/BookAppointment";
+import Appointments from "./pages/Appointments";
+import DoctorAppointments from "./pages/Doctor/DoctorAppointments";
 function App() {
   const { loading } = useSelector((state: RootState) => state.alerts);
   return (
@@ -89,7 +92,32 @@ function App() {
             </ProtectedRoute>
           }
         />
-      </Routes>
+        <Route
+          path="/book-appointment/:doctorId"
+          element={
+            <ProtectedRoute>
+              <BookAppointment />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/appointments"
+          element={
+            <ProtectedRoute>
+              <Appointments />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/doctors/appointments"
+          element={
+            <ProtectedRoute>
+              <DoctorAppointments />
+            </ProtectedRoute>
+          }
+        />
+      </Routes> 
     </BrowserRouter>
   );
 }

@@ -2,11 +2,11 @@ import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const Doctor: FC<{ doctor: any }> = ({ doctor }) => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <div
       className="card p-2 cursor-pointer"
-      // onClick={() => navigate(`/book-appointment/${doctor._id}`)}
+      onClick={() => navigate(`/book-appointment/${doctor._id}`)}
     >
       <h1 className="card-title">
         {doctor.firstName} {doctor.lastName}
