@@ -221,6 +221,23 @@ const checkBookingAvailability = async (req:Request, res: Response) => {
     });
   }
 }
+const getAppointmentsByUserId = async (req:Request, res:Response) => {
+  try {
+    const appointments = await Appointment.find({ userId: req.body.userId });
+    res.status(200).send({
+      message: "Appointments fetched successfully",
+      success: true,
+      data: appointments,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "Error fetching appointments",
+      success: false,
+      error,
+    });
+  }
+}
 export {
   register,
   login,
@@ -230,5 +247,6 @@ export {
   deleteAllNotifications,
   getAllApprovedDoctors,
   bookAppointment,
-  checkBookingAvailability
+  checkBookingAvailability,
+  getAppointmentsByUserId
 };
